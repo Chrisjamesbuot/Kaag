@@ -13,8 +13,8 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { connect } from "react-redux";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-// import FeedScreen from './Feed'
-// import SocialScreen from './Social'
+import FeedScreen from './Feed'
+import SocialScreen from './Social'
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -24,17 +24,36 @@ function Community({ postsAll, navigation }) {
   console.log({ postsAll });
   
   return (
-    <View style={styles.container}>
+    <SafeAreaView>
+
+      <SafeAreaView>
+
+          <View style={styles.container}>
               <View style={styles.innercontainer}>
-                <Text style = {styles.textHead}>Welcome, Erica!</Text>
+               <Text style = {styles.textHead}>Welcome, Erica!</Text>
                 <Text style = {styles.textSubHead}>Engage in Community</Text>
                 <Text style = {styles.textreg}>Create and share your photos, stories, and videos with the friends you care about.
                 </Text>
-              
+
               </View>
           </View>
+      </SafeAreaView>
 
-    
+      <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarActiveTintColor: "#8E2835",
+              tabBarInactiveTintColor: "#70707033",
+              tabBarPressColor:"#8E2835",
+              tabBarLabelStyle: {
+                fontSize: 15, 
+                fontFamily: 'bold', 
+              }, 
+            })}>
+          <Tab.Screen name="Feed" component={FeedScreen}/>
+          <Tab.Screen name="Social" component={SocialScreen} />
+      </Tab.Navigator>
+
+    </SafeAreaView>
   );
   
 };
