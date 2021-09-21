@@ -7,59 +7,37 @@ import {
   Pressable,
   TextInput,
   FlatList,
+  SafeAreaView
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { connect } from "react-redux";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+// import FeedScreen from './Feed'
+// import SocialScreen from './Social'
+
+const Tab = createMaterialTopTabNavigator();
+
+
 
 function Community({ postsAll, navigation }) {
   console.log({ postsAll });
+  
   return (
-    <View>
-      <View style={styles.headLine}>
-        <View style={styles.title}>
-          <Text style={styles.textHead}> Community</Text>
-        </View>
-        <View style={styles.searchBar}>
-          <TextInput
-            style={styles.input}
-            placeholder="   Search for keywords (Food, Event, etc)"
-          />
-        </View>
-      </View>
-
-      <FlatList
-        numColumns={1}
-        horizontal={false}
-        data={postsAll}
-        style={{ flex: 1 }}
-        renderItem={({ item }) => (
-          <View style={styles.container}>
-            <Text style={styles.textVocab}> {item.caption}</Text>
-
-            <Image
-              style={{ width: 290, height: 180, paddingLeft: 20 }}
-              source={{ uri: item.downloadURL }}
-            />
+    <View style={styles.container}>
+              <View style={styles.innercontainer}>
+                <Text style = {styles.textHead}>Welcome, Erica!</Text>
+                <Text style = {styles.textSubHead}>Engage in Community</Text>
+                <Text style = {styles.textreg}>Create and share your photos, stories, and videos with the friends you care about.
+                </Text>
+              
+              </View>
           </View>
-        )}
-      />
 
-      <Pressable
-        style={styles.buttonAudio}
-        onPress={() => navigation.navigate("MainContribution")}
-      >
-        <View style={styles.Icon}>
-          <MaterialCommunityIcons
-            name="plus"
-            size={35}
-            color="white"
-            style={{ left: -10 }}
-          />
-        </View>
-      </Pressable>
-    </View>
+    
   );
-}
+  
+};
 
 const mapStateToProps = (store) => ({
   postsAll: store.userState.postsAll,
@@ -75,6 +53,13 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
   },
+  innercontainer: { 
+    flex: 1,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    margin: 50,
+    //backgroundColor: '#FFFFFF',
+  },
 
   textHead: {
     flexDirection: "row",
@@ -82,15 +67,23 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     lineHeight: 21,
     letterSpacing: 0.25,
-    color: "white",
+    color: "#8E2835",
   },
   textSubHead: {
+    flexDirection: "row",
+    fontSize: 15,
+    fontWeight: "bold",
+    lineHeight: 21,
+    letterSpacing: 0.25,
+    //color: "white",
+  },
+  textreg: {
     flexDirection: "row",
     fontSize: 15,
     // fontWeight: "bold",
     lineHeight: 21,
     letterSpacing: 0.25,
-    color: "white",
+    //color: "white",
   },
   headLine: {
     flexDirection: "row",
